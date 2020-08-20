@@ -1,0 +1,25 @@
+<html>
+<head>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'findfriend/css/navbar.css' %}">
+<link rel="stylesheet" href="{% static 'findfriend/css/main2.css' %}">
+</head>
+<body>
+    
+    <div id="intro">Friend Requests</div>
+
+    {% for i in Requests %}
+    <div class = "suggest_div" style="width: 90%;">
+        <div class="profile_info">
+            <div class="profile_img"><img class="profile_img" src="../../static/images/wallpaper.jpg"></div>
+            <div class = "profile_name">{{i.mSent.mUsername}}</div>
+        </div>
+        <div class="profile_action_group">
+            <div class="profile_accept"><a href="{% url 'findfriend:process' action='add' friendname=i.mSent.mUsername %}">Accept </a></div>
+            <div class="profile_reject"><a href="{% url 'findfriend:process' action='del' friendname=i.mSent.mUsername %}">Decline</a></div>
+        </div>
+    </div>
+    {% endfor %}
+
+</body>
+</html>

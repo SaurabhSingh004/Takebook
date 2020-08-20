@@ -1,0 +1,33 @@
+<html>
+<head>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+<link rel="stylesheet" href="{% static 'css/text.css' %}">
+</head>
+<body>
+    <div id="msgarea">
+    {% for i in msg %}
+        {% if i.mSent %}
+            <p class="sender"> {{i.mSent}} </p>
+        {% else %}
+            <p class="receiver"> {{i.mReceived}} </p>
+        {% endif %}
+    {% endfor %}
+    </div>
+    <div id="msgform">
+    <form action="{% url 'chatarea:chatarea' friend=currentfrnd %}" method = "POST">
+    {% csrf_token %}
+    
+    <input type = "text" name="message" id="textmsg">
+    <button type = "submit" class="button" style="vertical-align:middle"><span>Send </span></button>
+    </form>
+    <script>
+        window.scroll(0, document.documentElement.scrollHeight);
+        window.onload = function() {
+        document.getElementById("textmsg").focus();
+        }
+    </script>    
+    </div>
+    
+</body>
+</html>

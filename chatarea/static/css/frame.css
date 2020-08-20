@@ -1,0 +1,45 @@
+#groups{
+    float:left;
+    width: 30%;
+    height: 90%;
+    background-color: #99CEFF;
+}
+
+.frame1{
+
+    border: 1px ;
+    width: 70%;
+    height: 90%;
+    scroll-padding: 10px;
+}
+
+.names{
+    background-color: #d8ecff;
+    width: 100%;
+    padding: 10px;
+    display:block;
+    border-bottom: 1px dotted #008000;
+}
+
+.names:hover{
+    background-color: #97aab3;
+}
+
+
+.profile_img {
+    vertical-align: middle;
+    width: 60px;
+    height: 60px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.profile_name{
+    margin-left: 40px;
+    display: inline-block;
+}
+
+#info{
+    margin-left:30px;
+}
