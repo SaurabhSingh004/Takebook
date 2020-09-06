@@ -6,3 +6,4 @@ class user(models.Model):
     mEmail = models.CharField(max_length=30)
     mUsername = models.CharField(max_length=20, primary_key=True)
     mPassword = models.CharField(max_length=25)
+    mImage = models.TextField(default="static/register/images/user.png")

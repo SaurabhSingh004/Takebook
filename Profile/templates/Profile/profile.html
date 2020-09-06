@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load static %}
+	<title>Contact V8</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="{% static 'Profile/images/icons/favicon.ico' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'Profile/vendor/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Profile/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Profile/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Profile/vendor/animate/animate.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Profile/vendor/css-hamburgers/hamburgers.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Profile/vendor/animsition/css/animsition.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Profile/vendor/select2/select2.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Profile/vendor/daterangepicker/daterangepicker.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Profile/css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'Profile/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'Profile/css/navbar.css' %}">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+</head>
+<body>
+    <!-- Nav bar implementation -->
+	<header class="header" style="height: 10%;">
+		<h1 class="logo"><a href="{% url 'home:home' %}">Takebook</a></h1>
+      <ul class="main-nav">
+        
+        <li><a href="{% url 'Profile:profile' %}">Profile</a></li>
+        <li><a href="{% url 'findfriend:find' %}">Get Friends</a></li>
+        <li><a href="{% url 'chatarea:chat' %}">Chat</a></li>
+        <li><a href="{% url 'home:logout' %}">Log Out</a></li>
+      </ul>
+    </header>
+    <!-- navbar implemented -->
+    <div id="imgProfile">
+    <img id = "profile" class="profile_img" src="{{ profilePic }}"></div>
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form" action = "{% url 'Profile:profile' %}" method = "POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div id="uploadbtn">
+                    <input type="file" id="upload" name="avatar" accept="image/gif, image/jpeg, image/png" style="display: none;">
+                    <label id="uploadlabel" for="upload" style = "visibility: {{ visVal }};">Edit</label>
+                </div>
+                <span class="contact100-form-title">
+					Hola {{ username }}
+                </span>
+				Name:
+				<div class="wrap-input100 validate-input" >
+					<input class="input100" type="text" name="name" placeholder = "{{name}}" {{value}}>
+					<span class="focus-input100-1"></span>
+					<span class="focus-input100-2"></span>
+				</div>
+				Username:
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="username" placeholder = "{{username}}" readonly>
+					<span class="focus-input100-1"></span>
+					<span class="focus-input100-2"></span>
+				</div>
+				Email:
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="email" placeholder = "{{email}}" {{value}}>
+					<span class="focus-input100-1"></span>
+					<span class="focus-input100-2"></span>
+				</div>
+
+				<div class="container-contact100-form-btn">
+					<input type = "submit" class="contact100-form-btn" name = "submit" value = "{{ valname }}">
+					</input>
+				</div>
+
+			</form>
+		</div>
+	</div>
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    $('#profile').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#upload").change(function(){
+            readURL(this);
+        });
+    </script>
+
+</body>
+</html>

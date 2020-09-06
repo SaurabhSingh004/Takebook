@@ -1,0 +1,54 @@
+a:link {
+  color:#ddcbff;
+  text-decoration: none;
+}
+
+a:visited {
+  color:#ddcbff;
+}
+
+a:hover {
+  color:#ddcbff;
+}
+
+a:active {
+  color:#ddcbff;
+}
+
+#nav{
+    background: #4a1e9e;
+    height: 40px;
+    position: fixed;
+    overflow: hidden;
+    top:0;
+    left:0;
+    width:100%;
+    padding: 5;
+    z-index:1;
+}
+
+#logo{
+    float: left;
+    margin-left: 10;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", "sans-serif";
+    padding:3;
+    top:0;
+}
+
+#func{
+    float: right;
+    top:0;
+}
+
+#in, #up, #out, #profile{
+    display: inline-block;
+     margin-right: 9;
+    height: 100%;
+    padding: 3;
+    overflow: hidden;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", "sans-serif";
+}
+
+#up:hover, #out:hover, #in:hover, #profile:hover{
+    background: #8a2be2;
+}

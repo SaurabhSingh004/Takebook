@@ -11,7 +11,7 @@
     {% for i in Requests %}
     <div class = "suggest_div" style="width: 90%;">
         <div class="profile_info">
-            <div class="profile_img"><img class="profile_img" src="../../static/images/wallpaper.jpg"></div>
+            <div class="profile_img"><img class="profile_img" src="../../{{ i.mSent.mImage }}"></div>
             <div class = "profile_name">{{i.mSent.mUsername}}</div>
         </div>
         <div class="profile_action_group">
