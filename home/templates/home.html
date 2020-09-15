@@ -2,8 +2,11 @@
 <head>
     {% load static %}
 <link rel="stylesheet" href="{% static 'home/css/navbar.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/posts.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/postcontent.css' %}">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 </head>
-<body>
+<body onload="starter()">
     <!-- Nav bar implementation -->
 	<header class="header" style="height: 10%;">
 		<h1 class="logo"><a href="{% url 'home:home' %}">Takebook</a></h1>
@@ -15,9 +18,107 @@
         <li><a href="{% url 'home:logout' %}">Log Out</a></li>
       </ul>
     </header>
-    <!-- navbar implemented -->
+  <!-- navbar implemented -->
 
-<p><h1> Welcome {{ username }}</p></h1> <br>
+  <div id="left">
+    <div id="add" title="Add Image"></div>
+  </div>
 
+  <!-- new Post modal implemented -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form id="formImg" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="imageUpload" id="imageUpload" accept="image/gif, image/jpeg, image/png" style="display: none;" required/> 
+        <label id="uploadLabel" for="imageUpload" class="button-style">
+        </label>
+        <img id="showimgupload" src="" height="400px" width="400px">
+        <textarea id="uploadcaption" name="caption" rows="4" cols="50" placeholder="Caption"></textarea>
+        <button type="submit" id="uploadbtn">Post</button>
+      </form>
+    </div>
+  </div>
+  <!-- modal completed -->
+
+  <div id="goleft" title="prev" onclick="prev()"></div>
+  <div id="postarea">
+  </div>
+  <div id="goright" title="next" onclick="next()"></div>
+<script>
+  var a = JSON.parse('{{ jsoncontext|safe}}');
+  var temp=0;
+  var positionIndex = [0];
+  var currentposition = 1;
+  for(var i=0; i<parseInt(a.length/3); i++){
+    temp+=3;
+    positionIndex.push(temp);
+  }
+  if(a.length%3 != 0)
+  {positionIndex.push(temp+a.length%3);}
+  console.log("postion index size: "+ positionIndex.length);
+  function starter(){
+    loadtabs();
+  }
+  function loadtabs(){
+    var i=positionIndex[currentposition-1]
+    str="";
+    if(a.length <= 2){
+      i = 0;
+    }
+    for(; i<positionIndex[currentposition]; i++){
+    str+="<div class='posttab'> <div class='profile_section'> <div class='postuserdp'> <img class='userdp' src="+a[i].userphoto+"> </div><div class='postusername'>"+a[i].username+"</div> </div> <div class='postimage'><img class='postimg' src="+a[i].photo+"> </div> <div class='postcaption'>"+a[i].caption+"</div> <div class='postlikes'><span id='likefont'>&#10084;</span></div></div>"
+    }
+    document.getElementById('postarea').innerHTML = str;
+  }
+  function prev(){
+    console.log("crnt postion and array val"+currentposition+" "+positionIndex[currentposition]);
+    if(currentposition>1){
+      currentposition--;
+      loadtabs();
+    }
+  }
+  function next(){
+    console.log("crnt postion and array val"+currentposition+" "+positionIndex[currentposition]);
+    if(currentposition!=positionIndex.length-1){
+      currentposition++;
+      loadtabs();
+    }
+  }
+</script> 
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+              $('#showimgupload').css("display", "block");
+              $('#showimgupload').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imageUpload").change(function(){
+        $('#uploadLabel').css("display", "none");
+        readURL(this);
+    });
+</script>
+  <script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("add");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 </body>
 </html>
