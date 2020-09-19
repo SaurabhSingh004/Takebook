@@ -9,6 +9,7 @@ def login(request):
         request.session['username']
         return redirect('/')
     except:
+        context = {'visval': 'none'}
         if request.method == 'POST':
             username = request.POST.get('username').upper()
             password = request.POST.get('password')
@@ -20,10 +21,12 @@ def login(request):
                     request.session['username'] = username
                     return redirect('/')
                 else:
-                    return HttpResponse("invalid username/password ")
+                    context['visval'] = 'block'
+                    return render(request, 'login.html', context)
             except:
-                return HttpResponse("invalid usrename/password")
-    return render(request, 'login.html')
+                context['visval'] = 'block'
+                return render(request, 'login.html', context)
+    return render(request, 'login.html', context)
 
 def signup(request):
     

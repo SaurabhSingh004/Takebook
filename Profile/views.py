@@ -38,7 +38,6 @@ def profile(request):
                 p.save()
                 context['email'] = p.mEmail 
             
-            print("request is", request.POST.get('avatar'))
             # image upload implementation....
             if request.POST.get('avatar') is None:
                 img = request.FILES['avatar']
@@ -66,3 +65,32 @@ def profile(request):
         return render(request, 'Profile/profile.html', context)
     except:
         return redirect('/')
+
+def userProfile(request, profilename):
+    try:
+        m = request.session['username']
+        p = user.objects.get(mUsername = profilename.upper())
+        name = p.mName
+        username = p.mUsername
+        email = p.mEmail
+        image = "../../"+p.mImage
+        context = {
+            'name': name,
+            'username': username,
+            'email': email,
+            'profilePic': image,
+            'value': 'readonly',
+            'allow': True,
+            'in': 'none',
+            'out': 'block',
+            'valname':'Change',
+            'visVal': 'hidden',
+        }        
+        if m == profilename.upper():
+            return redirect('/profile')
+        else:
+            context['out'] = 'none'
+            return render(request, 'Profile/profile.html', context)
+    except:
+        return redirect('/')
+    

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	{% load static %}
-	<title>Contact V8</title>
+	<title>Takebook</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="{% static 'Profile/images/icons/favicon.ico' %}"/>
+	<link rel="icon" type="image/png" href="{% static 'login/images/icons/TB_logo.png' %}"/>
 	<link rel="stylesheet" type="text/css" href="{% static 'Profile/vendor/bootstrap/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'Profile/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'Profile/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
@@ -42,7 +42,7 @@
                     <input type="file" id="upload" name="avatar" accept="image/gif, image/jpeg, image/png" style="display: none;">
                     <label id="uploadlabel" for="upload" style = "visibility: {{ visVal }};">Edit</label>
                 </div>
-                <span class="contact100-form-title">
+                <span class="contact100-form-title" style="display: {{ out }};">
 					Hola {{ username }}
                 </span>
 				Name:
@@ -65,7 +65,7 @@
 				</div>
 
 				<div class="container-contact100-form-btn">
-					<input type = "submit" class="contact100-form-btn" name = "submit" value = "{{ valname }}">
+				<input type = "submit" class="contact100-form-btn" name = "submit" value = "{{ valname }}" style="display:{{out}};">
 					</input>
 				</div>
 

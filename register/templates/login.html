@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	{% load static %}
-	<title>Login V12</title>
+	<title>Takebook</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+	<link rel="icon" type="image/png" href="{% static 'login/images/icons/TB_logo.png' %}"/>
 	<link rel="stylesheet" type="text/css" href="{% static 'login/vendor/bootstrap/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
@@ -19,17 +19,13 @@
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/img-01.jpg');">
+		<div class="container-login100">
 			<div class="wrap-login100 p-t-190 p-b-30">
 				<form class="login100-form validate-form" action="{% url 'register:login' %}" method="POST">
 					{% csrf_token %}
 					<div class="login100-form-avatar">
-						<img src="{% static 'login/images/avatar-01.jpg' %}" alt="AVATAR">
+						<img src="{% static 'login/images/TakeBook.png' %}" alt="Takebook">
 					</div>
-					<span class="login100-form-title p-t-20 p-b-45">
-						John Doe
-					</span>
-
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
 						<input class="input100" type="text" name="username" placeholder="Username">
 						<span class="focus-input100"></span>
@@ -52,10 +48,8 @@
 						</button>
 					</div>
 
-					<div class="text-center w-full p-t-25 p-b-230">
-						<a href="" class="txt1">
-							Forget Password/Username
-						</a>
+					<div class="text-center w-full p-t-25 p-b-230" style="display:{{visval}}; color:red">
+							<b>Invalid Username/Password</b>
 					</div>
 
 					<div class="text-center w-full">
