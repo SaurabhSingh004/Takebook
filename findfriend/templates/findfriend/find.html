@@ -1,6 +1,7 @@
 <html>
-<head>
+<head><title>Takebook</title>
     {% load static %}
+<link rel="icon" type="image/png" href="{% static 'login/images/icons/TB_logo.png' %}"/>
 <link rel="stylesheet" href="{% static 'findfriend/css/navbar.css' %}">
 <link rel="stylesheet" href="{% static 'findfriend/css/main.css' %}">
 </head>
@@ -32,7 +33,7 @@
             </div>
             <div class="profile_action_group">
                 <div class="profile_action"><a href="{% url 'findfriend:sentReq' friendname=i.mUsername %}"> Send Request </a></div>
-                <div class="profile_view">Open Profile</div>
+                <div class="profile_view"><a href="{% url 'Profile:userProfile' profilename=i.mUsername %}">Open Profile</a></div>
             </div>
         </div>
         {% endif %}
